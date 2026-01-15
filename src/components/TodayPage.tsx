@@ -25,7 +25,7 @@ export default function TodayPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Today</h1>
+      <h2 className="text-2xl font-semibold mb-4">Today's Tasks</h2>
 
       <ul className="space-y-2">
         {habits.map((habit) => {
@@ -44,10 +44,10 @@ export default function TodayPage() {
                 type="button"
                 onClick={() => toggleDone(habit.id)}
                 className={`text-sm rounded-md px-3 py-1 ${
-                  done ? "bg-zinc-900 text-white" : "bg-zinc-100 text-zinc-900"
+                  done ? "bg-zinc-900 text-white" : "bg-zinc-100 text-white"
                 }`}
               >
-                {done ? "Undo" : "Mark done"}
+                {done ? "Undo" : "Mark Complete"}
               </button>
             </li>
           );
