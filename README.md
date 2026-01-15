@@ -22,7 +22,7 @@ This project is intended as a learning and portfolio project, focusing on modern
 2. Install dependencies by running:
 
 ```
--npm install
+npm install
 ```
 
 ```
