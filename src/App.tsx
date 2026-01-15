@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import TodayPage from "./components/TodayPage";
+import "./App.css";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <p className="mt-2 text-zinc-600">
         Personal habit tracker built with React and TypeScript.
       </p>
+      <TodayPage />
     </div>
   );
 }
