@@ -12,13 +12,17 @@ const initialHabits: Habit[] = [
 export default function HabitHomePage() {
   const [habits, setHabits] = useState<Habit[]>(initialHabits);
 
+  function addHabit(name: string) {
+    setHabits((prev) => [{ id: crypto.randomUUID(), name }, ...prev]);
+  }
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold">Habit Home</h1>
       <p className="mt-2 text-zinc-600">
         Personal habit tracker built with React and TypeScript.
       </p>
-      <AddHabit />
+      <AddHabit onAdd={addHabit} />
       <TodayPage habits={habits} />
     </div>
   );
