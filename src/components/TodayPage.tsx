@@ -1,17 +1,11 @@
 import { useState } from "react";
+import type { Habit } from "./types.ts";
 
-type Habit = {
-  id: string;
-  name: string;
+type TodayPageProps = {
+  habits: Habit[];
 };
 
-const habits: Habit[] = [
-  { id: "water", name: "Drink water" },
-  { id: "walk", name: "Go for a walk" },
-  { id: "read", name: "Read 10 pages" },
-];
-
-export default function TodayPage() {
+export default function TodayPage({ habits }: TodayPageProps) {
   const [doneIds, setDoneIds] = useState<string[]>([]);
 
   function toggleDone(id: string) {
