@@ -9,8 +9,22 @@ const initialHabits: Habit[] = [
   { id: "read", name: "Read 10 pages" },
 ];
 
+function loadHabits(): Habit[] {
+  const stored = localStorage.getItem("habits");
+
+  if (!stored) {
+    return initialHabits;
+  }
+
+  try {
+    return JSON.parse(stored) as Habit[];
+  } catch {
+    return initialHabits;
+  }
+}
+
 export default function HabitHomePage() {
-  const [habits, setHabits] = useState<Habit[]>(initialHabits);
+  const [habits, setHabits] = useState<Habit[]>(loadHabits);
 
   function addHabit(name: string) {
     setHabits((prev) => [{ id: crypto.randomUUID(), name }, ...prev]);
