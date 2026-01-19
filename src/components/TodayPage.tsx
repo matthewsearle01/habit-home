@@ -5,8 +5,8 @@ type TodayPageProps = {
   habits: Habit[];
 };
 
-function loadDoneIds(): string[] {
-  const stored = localStorage.getItem("doneIds");
+function loadDoneIds(storageKey: string): string[] {
+  const stored = localStorage.getItem(storageKey);
 
   if (!stored) {
     return [];
@@ -20,11 +20,12 @@ function loadDoneIds(): string[] {
 }
 
 export default function TodayPage({ habits }: TodayPageProps) {
-  const [doneIds, setDoneIds] = useState<string[]>(loadDoneIds());
+  const todayKey = `doneIds:${new Date().toISOString().slice(0, 10)}`;
+  const [doneIds, setDoneIds] = useState<string[]>(loadDoneIds(todayKey));
 
   useEffect(() => {
-    localStorage.setItem("doneIds", JSON.stringify(doneIds));
-  }, [doneIds]);
+    localStorage.setItem(todayKey, JSON.stringify(doneIds));
+  }, [todayKey, doneIds]);
 
   function toggleDone(id: string) {
     setDoneIds((prev) => {
