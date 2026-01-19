@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodayPage from "../components/TodayPage.tsx";
 import AddHabit from "../components/AddHabitForm.tsx";
 import type { Habit } from "../types.ts";
 
-const initialHabits: Habit[] = [
-  { id: "water", name: "Drink water" },
-  { id: "walk", name: "Go for a walk" },
-  { id: "read", name: "Read 10 pages" },
-];
+function loadHabits(): Habit[] {
+  const stored = localStorage.getItem("habits");
+
+  if (!stored) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(stored) as Habit[];
+  } catch {
+    return [];
+  }
+}
 
 export default function HabitHomePage() {
-  const [habits, setHabits] = useState<Habit[]>(initialHabits);
+  const [habits, setHabits] = useState<Habit[]>(loadHabits);
+
+  useEffect(() => {
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }, [habits]);
 
   function addHabit(name: string) {
     setHabits((prev) => [{ id: crypto.randomUUID(), name }, ...prev]);
