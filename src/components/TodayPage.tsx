@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Habit } from "./types.ts";
 
 type TodayPageProps = {
   habits: Habit[];
 };
 
+function loadDoneIds(): string[] {
+  const stored = localStorage.getItem("doneIds");
+
+  if (!stored) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(stored) as string[];
+  } catch {
+    return [];
+  }
+}
+
 export default function TodayPage({ habits }: TodayPageProps) {
-  const [doneIds, setDoneIds] = useState<string[]>([]);
+  const [doneIds, setDoneIds] = useState<string[]>(loadDoneIds());
+
+  useEffect(() => {
+    localStorage.setItem("doneIds", JSON.stringify(doneIds));
+  }, [doneIds]);
 
   function toggleDone(id: string) {
     setDoneIds((prev) => {
