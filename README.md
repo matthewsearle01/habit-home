@@ -1,6 +1,6 @@
 # Habit Home
 
-A simple, front-end habit tracker built with React and TypeScript.
+A simple, front-end habit tracker built with React, TypeScript, Vite, and Tailwind CSS. Latest deployed version can be viewed here: https://habit-home-silk.vercel.app
 
 This project is intended as a learning and portfolio project, focusing on modern frontend development practices using React, TypeScript, Vite, and Tailwind CSS. The application runs entirely in the browser and uses localStorage for persistence.
 
@@ -10,6 +10,8 @@ This project is intended as a learning and portfolio project, focusing on modern
 - TypeScript
 - Vite
 - Tailwind CSS
+
+## To Run Locally:
 
 ## Requirements
 
